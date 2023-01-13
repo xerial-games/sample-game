@@ -3,6 +3,7 @@
   flex-direction: column;
   max-width: 1100px;
   margin: 0 auto;
+  padding-bottom: 100px;
 }
 
 .home__connectSection {
@@ -15,12 +16,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 60px;
 }
 
 .home__title {
   font-family: "Montserrat", sans-serif;
   font-size: 40px;
   line-height: 64px;
+}
+
+.home__titleMargin {
+  margin-bottom: 60px;
 }
 
 .home__generalText {
@@ -32,9 +38,13 @@
   margin-bottom: 20px;
 }
 
-.home__xerialHyperlink {
+.home__hyperlink {
   text-decoration: none;
   color: rgba(255, 71, 255, 1);
+}
+
+.home__textSemiBold {
+  font-weight: 600;
 }
 
 .home__picaroImage {
@@ -49,10 +59,24 @@
   margin-bottom: 20px;
 }
 
+.home__waitAnimation {
+  animation: waitingAnimation 3s infinite;
+}
+
+@keyframes waitingAnimation {
+  25% { color:#0c0c0c }
+  75% { color:#6e6d6d }
+}
+
+.home__picaroHyperlinkMargin {
+  margin-top: 60px;
+}
+
 .home__connectAccountSection {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 60px;
 }
 
 .home__buttonRoseGradient {
@@ -75,6 +99,15 @@
   cursor: pointer;
   font-weight: 600;
   margin-bottom: 20px;
+  width: 312px;
+}
+
+.home__buttonMargin {
+  margin-bottom: 40px;
+}
+
+.home__buttonRoseGradient:hover {
+  opacity: 0.9;
 }
 
 .home__sellItemsInfoSection {
@@ -88,6 +121,16 @@
   text-align: center;
 }
 
-.home__picaroLvlMargin {
-  margin-bottom: 80px;
+.home__sellPicaroContainer {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.home__input {
+  border: 1px solid #000000;
+  border-radius: 8px;
+  font-size: 18px;
+  line-height: 28px;
+  padding: 15px 26px;
+  margin-bottom: 20px;
+  width: 312px;
 }
