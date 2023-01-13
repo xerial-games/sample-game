@@ -1,0 +1,51 @@
+.header__header,
+.header__darkHeader {
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__header {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.header__darkHeader {
+  background-color: #2a2035;
+}
+
+.header__logo {
+  width: 80px;
+  height: 80px;
+  display: block;
+  cursor: pointer;
+}
+
+.header__container {
+  display: flex;
+  gap: 85px;
+  align-items: center;
+}
+
+.header__logoutIcon {
+  width: 28px;
+  height: auto;
+  cursor: pointer;
+}
+
+.header__hyperlink,
+.header__darkHyperlink {
+  line-height: 30px;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.header__hyperlink {
+  color: #000000;
+}
+
+.header__darkHyperlink {
+  color: white;
+}
