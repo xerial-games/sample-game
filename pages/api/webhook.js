@@ -3,7 +3,7 @@ const processProjectConnected = function (payload) {
 };
 
 const processNftCreated = function (payload) {
-  globalThis.nftId = payload.nftId;
+  globalThis.nftId = payload.id;
 };
 
 export const config = { api: { bodyParser: false } };
