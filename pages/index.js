@@ -120,6 +120,11 @@ const viewmodel = (function () {
     }
   };
 
+  vm.resetGame = async function () {
+    await fetch('/api/reset', { method: 'POST', body: '{}' });
+    window.location.reload();
+  };
+
   return vm;
 })();
 
@@ -249,7 +254,7 @@ export default function Home() {
           textContentCenter
           buttonContent="Cerrar"
           buttonClick={() => {
-            alert("Close");
+            viewmodel.resetGame();
           }}
         />
       );
