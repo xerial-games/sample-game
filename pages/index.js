@@ -58,7 +58,7 @@ const viewmodel = (function () {
 
   // NOTE: This is a test project ID, in order to use the API with your own
   // API key, you'll need to change this project ID to your own project's ID.
-  vm.projectId = '63a0835be57a519991b17968';
+  vm.projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
 
   vm.playerId = Math.ceil(Math.random() * 1000);
 
