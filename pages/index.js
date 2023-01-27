@@ -77,6 +77,16 @@ const viewmodel = (function () {
     vm.observer.notify();
   };
 
+  vm.setImageName = function (newName) {
+    vm.imageName = newName;
+    vm.observer.notify();
+  };
+
+  vm.setImageBase64 = function (newBase64) {
+    vm.imageBase64 = newBase64;
+    vm.observer.notify();
+  };
+
   vm.setPlayerAddress = function (newPlayerAddress) {
     vm.playerAddress = newPlayerAddress;
     vm.waitingForPlayerAddress = false;
@@ -107,6 +117,8 @@ const viewmodel = (function () {
           playerId: vm.playerId,
           level: vm.level,
           price: vm.price,
+          imageName: vm.imageName,
+          imageBase64: vm.imageBase64,
         })
       });
       vm.waitingForNftId = true;
@@ -160,6 +172,17 @@ export default function Home() {
     viewmodel.setPrice(event.target.value);
   };
 
+  const onImageChanged = function (event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.addEventListener("load", function () {
+      viewmodel.setImageName(file.name);
+      viewmodel.setImageBase64(reader.result.split('base64,')[1]);
+    });
+  };
+
   const connectProject = function (event) {
     event.preventDefault();
     viewmodel.connectProject();
@@ -191,27 +214,7 @@ export default function Home() {
     if (!playerAddress) {
       return <p className='home__generalTextMini home__textCenter'><em>Para vender tu picaro el juego tiene que conocer tu address en Xerial.</em></p>;
     }
-    // Esto lo comento, lo muevo a otro lugar. Voy a decidir donde se queda.
-    // if (nftId) {
-    //   const url = `https://staging.xerial.io/items/${nftId}`;
-    //   // return <p className='home__generalText home__picaroHyperlinkMargin'>Tu picaro esta a la venta! Entra aca: <a className='home__hyperlink home__textSemiBold' href={url} target="_blank" rel="noreferrer">Ver en Xerial</a></p>;
-    //   return (
-    //     <FinishedProcessModal
-    //       title="PUBLICASTE TU ITEM"
-    //       titleCenter
-    //       description="Lo podes encontrar acá "
-    //       hyperlinkTextContent="Xerial"
-    //       hyperlink={url}
-    //       textContentCenter
-    //       buttonContent="Cerrar"
-    //       buttonClick={() => {
-    //         alert("Close");
-    //       }}
-    //     />
-    //   );
-    // }
     if (creatingSale) {
-      // return <p className='home__generalText home__waitAnimation'>Creando venta de picaro...</p>;
       return (
         <div className="home__loaderContainer">
           <Loader text="Creando venta del item..." />
@@ -219,7 +222,6 @@ export default function Home() {
       );
     }
     if (waitingForNftId) {
-      // return <p className='home__generalText home__waitAnimation'>Espera un momento...</p>;
       return (
         <div className="home__loaderContainer">
           <Loader text="Espera un momento..." />
@@ -228,6 +230,7 @@ export default function Home() {
     }
     return (
       <div className='home__sellPicaroContainer'>
+        <input type="file" accept="image/png, image/jpeg" onChange={onImageChanged} placeholder="Thumbnail" />
         <input className='home__input' type="number" placeholder="Precio del item" onChange={onPriceChanged} />
         {/* <p><a onClick={createSale} href="">Vender picaro por {price || '??'} tokens.</a></p> */}
         <p><button className='home__buttonRoseGradient' onClick={createSale}>Publicar</button></p>

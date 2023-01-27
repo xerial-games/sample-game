@@ -5,6 +5,8 @@ export default async function handler(req, res) {
   const playerId = req.body.playerId;
   const price = req.body.price;
   const level = req.body.level;
+  const imageName = req.body.imageName;
+  const imageBase64 = req.body.imageBase64;
 
   const response = await fetch(`${process.env.XERIAL_API_HOST}/create_nft`, {
     method: 'POST',
@@ -17,7 +19,10 @@ export default async function handler(req, res) {
         description: `Este es mi picaro nivel ${level}!`,
         price,
         stock: 1,
-        image: 'https://staging.xerial.io/assets/homeAssets/leagueoflegends.png',
+        image: {
+          name: imageName,
+          base64: imageBase64,
+        },
       }
     }),
   });
